@@ -38,11 +38,11 @@ It interacts with a backend REST API to manage book records.
 
 1. **Build the Docker image:**
    ```bash
-   docker build -t catalogueWebUI .
+   docker build -t cataloguewebui .
 
 2. **Run the Docker image:**
    ```bash
-   docker run -p 8081:8081 catalogueWebUI
+   docker run -p 8081:8081 cataloguewebui
 
 ### 🧪 Running Locally (without Docker)
 
