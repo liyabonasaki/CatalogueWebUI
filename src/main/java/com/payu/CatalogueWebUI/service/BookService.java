@@ -2,6 +2,7 @@ package com.payu.CatalogueWebUI.service;
 
 import com.payu.CatalogueWebUI.dto.BookDto;
 import jakarta.ws.rs.client.Client;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import jakarta.annotation.PostConstruct;
@@ -20,6 +21,9 @@ public class BookService {
     private Client client;
     private WebTarget baseTarget;
 
+    @Value("${catalogue.management.url}")
+    private String catalogueManagementUrl;
+
 
     @PostConstruct
     public void init() {
@@ -30,7 +34,7 @@ public class BookService {
         provider.setMapper(mapper);
 
         client = ClientBuilder.newClient().register(provider);
-        baseTarget = client.target("http://localhost:8080/api/books");
+        baseTarget = client.target(catalogueManagementUrl);
     }
 
     public List<BookDto> getAllBooks() {

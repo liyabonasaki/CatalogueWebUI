@@ -36,13 +36,17 @@ It interacts with a backend REST API to manage book records.
 
 ### 🐳 Docker (Recommended)
 
-1. **Build the Docker image:**
+1. **Ensure you have created the docker network in the Catalogue management service**
    ```bash
-   docker build -t cataloguewebui .
+   docker network create catalogue-network
 
-2. **Run the Docker image:**
+2. **Build the Docker image:**
    ```bash
-   docker run -p 8081:8081 cataloguewebui
+   docker build -t catalogue-webui .
+
+3. **Run the Docker image inside the network and let it connect to the Management service:**
+   ```bash
+   docker run -d --name cataloguewebui --network catalogue-network -p 8081:8081 -e catalogue.management.url=http://cataloguemanagement:8080/api/books catalogue-webui
 
 ### 🧪 Running Locally (without Docker)
 
